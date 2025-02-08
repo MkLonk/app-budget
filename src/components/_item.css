@@ -1,0 +1,23 @@
+/* Стили для строки таблицы */
+.item__row {
+  border-bottom: 1px solid #ddd;
+}
+
+.item__row td {
+  padding: 8px;
+  text-align: left;
+}
+
+/* Стили для кнопки удаления */
+.item__delete-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: red;
+  transition: color 0.3s ease;
+}
+
+.item__delete-button:hover {
+  color: darkred;
+}

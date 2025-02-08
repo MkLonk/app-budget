@@ -1,0 +1,55 @@
+/* Общий блок для всех списков */
+.list {
+  margin: 20px;
+}
+
+.list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.list__button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.list__button:hover {
+  background-color: #0056b3;
+}
+
+.list__notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+}
+
+.list__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.list__table th,
+.list__table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.list__table th {
+  background-color: #f2f2f2;
+}

@@ -1,0 +1,36 @@
+/* Общий блок для хедера */
+.header {
+  background-color: #007bff; /* Синий фон, как у кнопок */
+  /* color: rgb(0, 0, 0); */ /* Белый текст */
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Легкая тень для разделения от содержимого */
+  display: flex;
+}
+
+/* Навигационное меню */
+.header__nav {
+  display: flex;
+  justify-content: space-between; /* Расположение элементов по краям */
+  align-items: center;
+}
+
+/* Кнопки навигации */
+.header__link {
+  text-decoration: none; /* Убираем подчеркивание ссылок */
+  color: white; /* Белый цвет текста */
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Анимация при наведении */
+}
+
+.header__link:hover {
+  background-color: #0056b3; /* Темно-синий при наведении */
+  transform: scale(1.05); /* Масштабирование при наведении */
+}
+
+/* Активная кнопка */
+.header__link--active {
+  background-color: #0056b3; /* Темно-синий для активной ссылки */
+}

@@ -1,0 +1,22 @@
+.contracts-list {
+    margin: 20px;
+  }
+  
+  .contracts-list__notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+  }
+  
+  .contracts-list__cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
