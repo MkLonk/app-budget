@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDevelopersData, addDeveloperData } from '../features/developers/developersSlice';
-import AddDeveloperPopup from './AddDeveloperPopup';
+import { fetchDevelopersData, addDeveloperData } from '../../features/developers/developersSlice';
+import AddDeveloperPopup from '../popups/AddDeveloperPopup';
 import Developer from './Developer';
-import './_table.css'; // Подключаем универсальные стили для таблицы
+import '../table/table.css'; // Подключаем универсальные стили для таблицы
 
 const DevelopersList = () => {
   const dispatch = useDispatch();

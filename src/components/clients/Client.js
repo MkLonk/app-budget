@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteClientData } from '../features/clients/clientsSlice';
-import './Client.css'; // Подключаем стили
+import { deleteClientData } from '../../features/clients/clientsSlice';
+import '../table/item.css'; // Подключаем стили
 
 const Client = ({ client, onClientDeleted }) => {
   const dispatch = useDispatch();

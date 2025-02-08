@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './_popup.css';
+import './popups.css';
 
 const AddDeveloperPopup = ({ onClose, onDeveloperAdded }) => {
   const [newDeveloper, setNewDeveloper] = useState({

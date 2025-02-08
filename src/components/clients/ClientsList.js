@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchClientsData, addClientData } from '../features/clients/clientsSlice';
-import AddClientPopup from './AddClientPopup';
+import { fetchClientsData, addClientData } from '../../features/clients/clientsSlice';
+import AddClientPopup from '../popups/AddClientPopup';
 import Client from './Client';
-import './_table.css'; // Подключаем универсальные стили для таблицы
+import '../table/table.css'; // Подключаем универсальные стили для таблицы
 
 const ClientsList = () => {
   const dispatch = useDispatch();

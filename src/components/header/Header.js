@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './Header.css'; // Подключаем стили
+import './header.css'; // Подключаем стили
 
 const Header = () => {
   const location = useLocation(); // Получаем текущее расположение

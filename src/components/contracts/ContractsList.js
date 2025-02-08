@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchContractsData, addContractData } from '../features/contracts/contractsSlice';
-import { fetchClientsData } from '../features/clients/clientsSlice';
-import { fetchDevelopersData } from '../features/developers/developersSlice';
+import { fetchContractsData, addContractData } from '../../features/contracts/contractsSlice';
+import { fetchClientsData } from '../../features/clients/clientsSlice';
+import { fetchDevelopersData } from '../../features/developers/developersSlice';
 import Contract from './Contract';
-import AddContractPopup from './AddContractPopup';
-import './ContractsList.css';
+import AddContractPopup from '../popups/AddContractPopup';
+import './сontractsList.css'; // Подключаем универсальные стили для таблицы
 
 const ContractsList = () => {
   const dispatch = useDispatch();

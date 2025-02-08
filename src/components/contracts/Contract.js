@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteContractData } from '../features/contracts/contractsSlice';
-import './Contract.css';
+import { deleteContractData } from '../../features/contracts/contractsSlice';
+import './сontract.css'; // Подключаем стили
 
 const Contract = ({ contract, onContractDeleted }) => {
   const dispatch = useDispatch();

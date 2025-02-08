@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteDeveloperData } from '../features/developers/developersSlice';
-// import './Developer.css';
+import { deleteDeveloperData } from '../../features/developers/developersSlice';
+import '../table/item.css'; // Подключаем стили
 
 const Developer = ({ developer, onDeveloperDeleted }) => {
   const dispatch = useDispatch();

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './_popup.css';
+import './popups.css';
 
 const AddContractPopup = ({ onClose, onContractAdded, clients, developers }) => {
   const [newContract, setNewContract] = useState({
