@@ -18,6 +18,24 @@ export const fetchContracts = async () => {
   }
 };
 
+// Функция для добавления нового договора
+export const addContract = async (newContract) => {
+  try {
+    const response = await axios.post(`${config.API_BASE_URL}/contracts`, newContract, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${config.AUTH_TOKEN}`,
+      },
+    });
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error(`Server responded with status ${response.status}`);
+    }
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 // Функция для удаления договора
 export const deleteContract = async (contractId) => {
   try {
@@ -36,36 +54,36 @@ export const deleteContract = async (contractId) => {
 
 // Функция для получения информации о клиенте по _id
 export const getClientById = async (clientId) => {
-    try {
-      const response = await axios.get(`${config.API_BASE_URL}/clients/${clientId}`, {
-        headers: {
-          Authorization: `${config.AUTH_TOKEN}`,
-        },
-      });
-      if (response.status !== 200 || !response.data.name) {
-        throw new Error('Invalid client data format');
-      }
-      return response.data.name;
-    } catch (error) {
-      console.error(`Ошибка при получении клиента с ID ${clientId}:`, error.message);
-      return null;
+  try {
+    const response = await axios.get(`${config.API_BASE_URL}/clients/${clientId}`, {
+      headers: {
+        Authorization: `${config.AUTH_TOKEN}`,
+      },
+    });
+    if (response.status !== 200 || !response.data.name) {
+      throw new Error('Invalid client data format');
     }
-  };
-  
-  // Функция для получения информации о разработчике по _id
-  export const getDeveloperById = async (developerId) => {
-    try {
-      const response = await axios.get(`${config.API_BASE_URL}/developers/${developerId}`, {
-        headers: {
-          Authorization: `${config.AUTH_TOKEN}`,
-        },
-      });
-      if (response.status !== 200 || !response.data.name) {
-        throw new Error('Invalid developer data format');
-      }
-      return response.data.name;
-    } catch (error) {
-      console.error(`Ошибка при получении разработчика с ID ${developerId}:`, error.message);
-      return null;
+    return response.data.name;
+  } catch (error) {
+    console.error(`Ошибка при получении клиента с ID ${clientId}:`, error.message);
+    return null;
+  }
+};
+
+// Функция для получения информации о разработчике по _id
+export const getDeveloperById = async (developerId) => {
+  try {
+    const response = await axios.get(`${config.API_BASE_URL}/developers/${developerId}`, {
+      headers: {
+        Authorization: `${config.AUTH_TOKEN}`,
+      },
+    });
+    if (response.status !== 200 || !response.data.name) {
+      throw new Error('Invalid developer data format');
     }
-  };
+    return response.data.name;
+  } catch (error) {
+    console.error(`Ошибка при получении разработчика с ID ${developerId}:`, error.message);
+    return null;
+  }
+};

@@ -6,14 +6,17 @@ import './Contract.css';
 const Contract = ({ contract, onContractDeleted }) => {
   const dispatch = useDispatch();
 
-  const handleDeleteContract = async () => {
-    try {
-      await dispatch(deleteContractData(contract._id)).unwrap();
-      onContractDeleted?.();
-    } catch (error) {
-      console.error('Ошибка при удалении договора:', error.message);
+// Функция для удаления контракта
+const handleDeleteContract = async () => {
+  try {
+    await dispatch(deleteContractData(contract._id)).unwrap();
+    if (onContractDeleted) {
+      onContractDeleted(); // Вызываем коллбэк для показа уведомления
     }
-  };
+  } catch (error) {
+    console.error('Ошибка при удалении контракта:', error.message);
+  }
+};
 
   return (
     <div className="contract-card">

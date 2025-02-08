@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchContracts, getClientById, getDeveloperById } from './contractsApi';
+import { fetchContracts, addContract, getClientById, getDeveloperById, deleteContract } from './contractsApi';
+//import { fetchClients } from '../clients';
+//import { fetchDevelopers } from '../developers';
 
 // Асинхронное действие для получения списка договоров
 export const fetchContractsData = createAsyncThunk('contracts/fetch', async () => {
@@ -21,9 +23,17 @@ export const fetchContractsData = createAsyncThunk('contracts/fetch', async () =
   return enrichedContracts;
 });
 
+
+// Асинхронное действие для добавления нового договора
+export const addContractData = createAsyncThunk('contracts/add', async (newContract) => {
+  const addedContract = await addContract(newContract);
+  return addedContract;
+});
+
+
 // Асинхронное действие для удаления договора
 export const deleteContractData = createAsyncThunk('contracts/delete', async (contractId) => {
-  // Здесь можно добавить логику удаления, если нужно
+  await deleteContract(contractId);
   return contractId;
 });
 
@@ -47,6 +57,12 @@ const contractsSlice = createSlice({
       .addCase(fetchContractsData.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message || 'Произошла ошибка при загрузке списка договоров';
+      })
+      .addCase(addContractData.fulfilled, (state, action) => {
+        state.list.push(action.payload);
+      })
+      .addCase(addContractData.rejected, (state, action) => {
+        state.error = action.error.message || 'Произошла ошибка при добавлении договора';
       })
       .addCase(deleteContractData.fulfilled, (state, action) => {
         state.list = state.list.filter((contract) => contract._id !== action.payload);
