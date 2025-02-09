@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchClientsData, addClientData } from '../../features/clients/clientsSlice';
 import AddClientPopup from '../popups/AddClientPopup';
 import Client from './Client';
+import { toast } from 'react-toastify';
+import { toastSuccess, toastError } from '../../config';
+
 import '../table/table.css'; // Подключаем универсальные стили для таблицы
 
 const ClientsList = () => {
@@ -10,24 +13,15 @@ const ClientsList = () => {
   const { list, status, error } = useSelector((state) => state.clients);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [notification, setNotification] = useState(null);
-
-  useEffect(() => {
-    if (notification) {
-      const timer = setTimeout(() => setNotification(null), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [notification]);
-
   const togglePopup = () => setIsPopupOpen(!isPopupOpen);
 
   const handleClientAdded = async (newClient) => {
     try {
       await dispatch(addClientData(newClient)).unwrap();
       await dispatch(fetchClientsData());
-      setNotification('Новая запись добавлена');
+      toast.success('Новый клиент успешно добавлен', toastSuccess);
     } catch (error) {
-      console.error('Ошибка при добавлении клиента:', error.message);
+      toast.error(`Ошибка при добавлении клиента: ${error.message}`, toastError);
     } finally {
       togglePopup();
     }
@@ -42,7 +36,6 @@ const ClientsList = () => {
 
   return (
     <div className="list">
-      {notification && <div className="list__notification">{notification}</div>}
       <div className="list__header">
         <h1>Список клиентов</h1>
         <button className="list__button" onClick={togglePopup}>
@@ -62,7 +55,7 @@ const ClientsList = () => {
         </thead>
         <tbody>
           {list.map((client) => (
-            <Client key={client._id} client={client} onClientDeleted={() => setNotification('Запись о клиенте удалена')} />
+            <Client key={client._id} client={client} />
           ))}
         </tbody>
       </table>

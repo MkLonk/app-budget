@@ -18,6 +18,7 @@ export const fetchClients = async () => {
   }
 };
 
+
 // Функция для добавления нового клиента
 export const addClient = async (newClient) => {
   try {
@@ -27,6 +28,27 @@ export const addClient = async (newClient) => {
         Authorization: `${config.AUTH_TOKEN}`,
       },
     });
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error(`Server responded with status ${response.status}`);
+    }
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+// Функция для обновления клиента
+export const updateClient = async (updatedClient) => {
+  try {
+    const response = await axios.patch(`${config.API_BASE_URL}/clients/${updatedClient._id}`,
+      updatedClient,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `${config.AUTH_TOKEN}`,
+        },
+      });
     if (response.status < 200 || response.status >= 300) {
       throw new Error(`Server responded with status ${response.status}`);
     }

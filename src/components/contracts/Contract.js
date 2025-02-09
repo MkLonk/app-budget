@@ -1,20 +1,20 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteContractData } from '../../features/contracts/contractsSlice';
+import { toast } from 'react-toastify';
+import { toastSuccess, toastError } from '../../config';
 import './сontract.css'; // Подключаем стили
 
-const Contract = ({ contract, onContractDeleted }) => {
+const Contract = ({ contract }) => {
   const dispatch = useDispatch();
 
 // Функция для удаления контракта
 const handleDeleteContract = async () => {
   try {
     await dispatch(deleteContractData(contract._id)).unwrap();
-    if (onContractDeleted) {
-      onContractDeleted(); // Вызываем коллбэк для показа уведомления
-    }
+    toast.success('Запись удалена', toastSuccess);
   } catch (error) {
-    console.error('Ошибка при удалении контракта:', error.message);
+    toast.error(`Ошибка при удалении контракта: ${error.message}`, toastError);
   }
 };
 

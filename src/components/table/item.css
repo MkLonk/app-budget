@@ -1,6 +1,22 @@
 /* Стили для строки таблицы */
+/* .item__row {
+  border-bottom: 1px solid #ddd;
+}
+ */
+
+/* Стили для строки таблицы */
 .item__row {
   border-bottom: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  transition: background-color 0.3s ease;
+  /* Плавный переход цвета фона */
+}
+
+/* Выделение строки при наведении курсора */
+.item__row:hover {
+  background-color: #f0f8ff; /* Бледно-голубой цвет фона */
+  cursor: pointer; /* Изменяем курсор на "указатель" */
 }
 
 .item__row td {
@@ -20,4 +36,18 @@
 
 .item__delete-button:hover {
   color: darkred;
+}
+
+.item__edit-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #007bff;
+  margin-right: 5px;
+  transition: color 0.3s ease;
+}
+
+.item__edit-button:hover {
+  color: #0056b3;
 }

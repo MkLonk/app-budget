@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchDevelopersData, addDeveloperData } from '../../features/developers/developersSlice';
 import AddDeveloperPopup from '../popups/AddDeveloperPopup';
 import Developer from './Developer';
+import { toast } from 'react-toastify';
+import { toastSuccess, toastError } from '../../config';
 import '../table/table.css'; // Подключаем универсальные стили для таблицы
 
 const DevelopersList = () => {
@@ -10,14 +12,6 @@ const DevelopersList = () => {
   const { list, status, error } = useSelector((state) => state.developers);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [notification, setNotification] = useState(null);
-
-  useEffect(() => {
-    if (notification) {
-      const timer = setTimeout(() => setNotification(null), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [notification]);
 
   const togglePopup = () => setIsPopupOpen(!isPopupOpen);
 
@@ -25,9 +19,9 @@ const DevelopersList = () => {
     try {
       await dispatch(addDeveloperData(newDeveloper)).unwrap();
       await dispatch(fetchDevelopersData());
-      setNotification('Новый разработчик добавлен');
+      toast.success('Новый разработчик добавлен', toastSuccess);
     } catch (error) {
-      console.error('Ошибка при добавлении разработчика:', error.message);
+      toast.error(`Ошибка при добавлении разработчика: ${error.message}`, toastError);
     } finally {
       togglePopup();
     }
@@ -42,7 +36,6 @@ const DevelopersList = () => {
 
   return (
     <div className="list">
-      {notification && <div className="list__notification">{notification}</div>}
       <div className="list__header">
         <h1>Список разработчиков</h1>
         <button className="list__button" onClick={togglePopup}>
@@ -62,7 +55,7 @@ const DevelopersList = () => {
         </thead>
         <tbody>
           {list.map((developer) => (
-            <Developer key={developer._id} developer={developer} onDeveloperDeleted={() => setNotification('Разработчик удален')} />
+            <Developer key={developer._id} developer={developer} />
           ))}
         </tbody>
       </table>

@@ -5,6 +5,9 @@ import { fetchClientsData } from '../../features/clients/clientsSlice';
 import { fetchDevelopersData } from '../../features/developers/developersSlice';
 import Contract from './Contract';
 import AddContractPopup from '../popups/AddContractPopup';
+import { toast } from 'react-toastify';
+import { toastSuccess, toastError } from '../../config';
+
 import './сontractsList.css'; // Подключаем универсальные стили для таблицы
 
 const ContractsList = () => {
@@ -15,14 +18,6 @@ const ContractsList = () => {
   const developers = useSelector((state) => state.developers.list); // Получаем список разработчиков
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [notification, setNotification] = useState(null);
-
-  useEffect(() => {
-    if (notification) {
-      const timer = setTimeout(() => setNotification(null), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [notification]);
 
   useEffect(() => {
     dispatch(fetchContractsData());
@@ -37,9 +32,9 @@ const ContractsList = () => {
     try {
       await dispatch(addContractData(newContract)).unwrap(); // Добавляем новый договор
       await dispatch(fetchContractsData());
-      setNotification('Новый договор добавлен');
+      toast.success('Новый договор добавлен', toastSuccess);
     } catch (error) {
-      console.error('Ошибка при добавлении договора:', error.message);
+      toast.error(`Ошибка при добавлении договора: ${error.message}`, toastError);
     } finally {
       togglePopup(); // Закрываем попап после отправки
     }
@@ -50,7 +45,6 @@ const ContractsList = () => {
 
   return (
     <div className="contracts-list">
-      {notification && <div className="contracts-list__notification">{notification}</div>}
       <div className="contracts-list__header">
         <h1>Список договоров</h1>
         <button className="contracts-list__button" onClick={togglePopup}>
@@ -71,7 +65,6 @@ const ContractsList = () => {
           <Contract
             key={contract._id}
             contract={contract}
-            onContractDeleted={() => setNotification('Запись удалена')}
           />
         ))}
       </div>

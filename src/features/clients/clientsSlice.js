@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchClients, addClient, deleteClient } from './clientsApi';
+import { fetchClients, addClient, deleteClient, updateClient } from './clientsApi';
 
 // Асинхронное действие для получения списка клиентов
 export const fetchClientsData = createAsyncThunk('clients/fetch', async () => {
@@ -11,6 +11,13 @@ export const fetchClientsData = createAsyncThunk('clients/fetch', async () => {
 export const addClientData = createAsyncThunk('clients/add', async (newClient) => {
   const addedClient = await addClient(newClient);
   return addedClient;
+});
+
+
+// Асинхронное действие для обновления клиента
+export const updateClientData = createAsyncThunk('clients/update', async (updatedClient) => {
+  await updateClient(updatedClient);
+  return updatedClient;
 });
 
 // Асинхронное действие для удаления клиента
@@ -51,6 +58,15 @@ const clientsSlice = createSlice({
       })
       .addCase(deleteClientData.rejected, (state, action) => {
         state.error = action.error.message || 'Произошла ошибка при удалении клиента';
+      })
+      .addCase(updateClientData.fulfilled, (state, action) => {
+        const updatedClient = action.payload;
+        state.list = state.list.map((client) =>
+          client._id === updatedClient._id ? updatedClient : client
+        );
+      })
+      .addCase(updateClientData.rejected, (state, action) => {
+        state.error = action.error.message || 'Произошла ошибка при обновлении клиента';
       });
   },
 });

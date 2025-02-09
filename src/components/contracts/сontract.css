@@ -6,6 +6,11 @@
     width: calc(100vw / 3 - 65px); /* Для трех колонок */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
+
+  .contract-card:hover {
+    background-color: #f0f8ff; /* Бледно-голубой цвет фона */
+    cursor: pointer; /* Изменяем курсор на "указатель" */
+  }
   
   .contract-card__header {
     display: flex;
