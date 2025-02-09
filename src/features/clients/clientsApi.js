@@ -1,62 +1,15 @@
 import axios from 'axios';
 import config from '../../config';
+import { apiRequest } from '../apiRequest';
 
 // Функция для получения списка клиентов
-export const fetchClients = async () => {
-  try {
-    const response = await axios.get(`${config.API_BASE_URL}/clients`, {
-      headers: {
-        Authorization: `${config.AUTH_TOKEN}`,
-      },
-    });
-    if (response.status !== 200 || !Array.isArray(response.data)) {
-      throw new Error('Invalid response data format');
-    }
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
+export const fetchClients = () => apiRequest('GET', '/clients');
 
 // Функция для добавления нового клиента
-export const addClient = async (newClient) => {
-  try {
-    const response = await axios.post(`${config.API_BASE_URL}/clients`, newClient, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `${config.AUTH_TOKEN}`,
-      },
-    });
-    if (response.status < 200 || response.status >= 300) {
-      throw new Error(`Server responded with status ${response.status}`);
-    }
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
+export const addClient = (newClient) => apiRequest('post', '/clients', newClient);
 
 // Функция для обновления клиента
-export const updateClient = async (updatedClient) => {
-  try {
-    const response = await axios.patch(`${config.API_BASE_URL}/clients/${updatedClient._id}`,
-      updatedClient,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `${config.AUTH_TOKEN}`,
-        },
-      });
-    if (response.status < 200 || response.status >= 300) {
-      throw new Error(`Server responded with status ${response.status}`);
-    }
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
+export const updateClient = (updatedClient) => apiRequest('patch', `/clients/${updatedClient._id}`, updatedClient);
 
 // Функция для удаления клиента
 export const deleteClient = async (clientId) => {
@@ -64,6 +17,7 @@ export const deleteClient = async (clientId) => {
     const response = await axios.delete(`${config.API_BASE_URL}/clients/${clientId}`, {
       headers: {
         Authorization: `${config.AUTH_TOKEN}`,
+        'Content-Type': 'application/json',
       },
     });
     if (![200, 204].includes(response.status)) {

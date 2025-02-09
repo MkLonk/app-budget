@@ -22,6 +22,8 @@ export const updateClientData = createAsyncThunk('clients/update', async (update
 
 // Асинхронное действие для удаления клиента
 export const deleteClientData = createAsyncThunk('clients/delete', async (clientId) => {
+  console.log(clientId);
+  
   await deleteClient(clientId);
   return clientId;
 });

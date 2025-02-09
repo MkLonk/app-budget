@@ -6,7 +6,7 @@ import { toastSuccess, toastError } from '../../config';
 import EditClientPopup from '../popups/EditClientPopup';
 import '../table/item.css'; // Подключаем стили
 
-const Client = ({ client, onClientDeleted, onClientUpdated }) => {
+const Client = ({ client }) => {
   const dispatch = useDispatch();
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
 
@@ -18,10 +18,10 @@ const Client = ({ client, onClientDeleted, onClientUpdated }) => {
       toast.error(`Ошибка при удалении клиента: ${error.message}`, toastError);
     }
   };
-  
+
   const handleClientUpdated = async (updatedClient) => {
     console.log(updatedClient);
-    
+
     try {
       await dispatch(updateClientData(updatedClient)).unwrap();
       toast.success('Запись о клиенте изменина', toastSuccess);
@@ -29,7 +29,7 @@ const Client = ({ client, onClientDeleted, onClientUpdated }) => {
       toast.error(`Ошибка при измении данных о клиенте: ${error.message}`, toastError);
     }
   };
-  
+
   const handleEditClick = () => setIsEditPopupOpen(true);
 
   return (

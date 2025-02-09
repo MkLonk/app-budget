@@ -1,10 +1,24 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchContracts, addContract, getClientById, getDeveloperById, deleteContract } from './contractsApi';
+import { fetchContracts, addContract, /* getClientById, getDeveloperById, */ deleteContract } from './contractsApi';
 //import { fetchClients } from '../clients';
 //import { fetchDevelopers } from '../developers';
 
 // Асинхронное действие для получения списка договоров
-export const fetchContractsData = createAsyncThunk('contracts/fetch', async () => {
+export const fetchContractsData = createAsyncThunk('contracts/fetch', async (_, { getState }) => {
+  const contracts = await fetchContracts();
+  const clients = getState().clients.list;
+  const developers = getState().developers.list;
+
+  const enrichedContracts = contracts.map((contract) => ({
+    ...contract,
+    client: clients.find((c) => c._id === contract.client)?.name || 'Неизвестный клиент',
+    developer: developers.find((d) => d._id === contract.developer)?.name || 'Неизвестный разработчик',
+  }));
+
+  return enrichedContracts;
+});
+
+/* export const fetchContractsData = createAsyncThunk('contracts/fetch', async () => {
   const contracts = await fetchContracts();
 
   // Преобразуем данные: заменяем _id на названия компаний
@@ -21,7 +35,7 @@ export const fetchContractsData = createAsyncThunk('contracts/fetch', async () =
   );
 
   return enrichedContracts;
-});
+}); */
 
 
 // Асинхронное действие для добавления нового договора
