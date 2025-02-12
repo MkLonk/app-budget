@@ -1,0 +1,49 @@
+/* Общий блок для списка договоров */
+.contracts-list {
+  margin: 20px;
+}
+
+/* Уведомление */
+.contracts-list__notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+}
+
+/* Заголовок списка */
+.contracts-list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Кнопка "Добавить договор" */
+.contracts-list__button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contracts-list__button:hover {
+  background-color: #0056b3;
+}
+
+/* Карточки договоров */
+.contracts-list__cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}

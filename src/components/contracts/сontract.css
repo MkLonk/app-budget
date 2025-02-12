@@ -1,0 +1,70 @@
+.contract-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    width: calc(100vw / 3 - 65px); /* Для трех колонок */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .contract-card:hover {
+    background-color: #f0f8ff; /* Бледно-голубой цвет фона */
+    cursor: pointer; /* Изменяем курсор на "указатель" */
+  }
+  
+  .contract-card__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .contract-card__number,
+  .contract-card__date {
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .contract-card__name {
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    word-break: break-word; /* Разбиваем длинные строки */
+  }
+  
+  .contract-card__details {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  
+  .contract-card__actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .contract-card__edit-button,
+  .contract-card__delete-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contract-card__edit-button {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .contract-card__edit-button:hover {
+    background-color: #1e7e34;
+  }
+  
+  .contract-card__delete-button {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .contract-card__delete-button:hover {
+    background-color: #bd2130;
+  }
