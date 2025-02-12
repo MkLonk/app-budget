@@ -1,37 +1,78 @@
-/* Общий блок для хедера */
+/* src/components/header/header.css */
 .header {
-  background-color: #a0a0a0; /* Синий фон, как у кнопок */
-  /* color: rgb(0, 0, 0); */ /* Белый текст */
-  padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Легкая тень для разделения от содержимого */
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
 }
 
-/* Навигационное меню */
 .header__nav {
   display: flex;
-  justify-content: space-between; /* Расположение элементов по краям */
-  align-items: center;
+  gap: 20px;
 }
 
-/* Кнопки навигации */
+.header__nav-left {
+  display: flex;
+  gap: 20px;
+}
+
 .header__link {
-  margin-left: 10px;
-  text-decoration: none; /* Убираем подчеркивание ссылок */
-  color: white; /* Белый цвет текста */
+  text-decoration: none;
+  color: #007bff;
   font-size: 16px;
-  font-weight: 500;
-  padding: 8px 16px;
+  padding: 8px 12px;
   border-radius: 4px;
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Анимация при наведении */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .header__link:hover {
-  background-color: #007bff; /* Темно-синий при наведении */
-  transform: scale(1.05); /* Масштабирование при наведении */
+  background-color: #007bff;
+  color: white;
 }
 
-/* Активная кнопка */
 .header__link--active {
-  background-color: #007bff; /* Темно-синий для активной ссылки */
+  background-color: #007bff;
+  color: white;
+}
+
+.header__auth {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.header__auth-button {
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.header__auth-button:hover {
+  background-color: #0056b3;
+}
+
+.header__user {
+  margin-top: 3px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.header__logout {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.header__logout:hover {
+  background-color: #bd2130;
 }

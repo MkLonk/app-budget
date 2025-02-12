@@ -2,29 +2,29 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchClients, addClient, deleteClient, updateClient } from './clientsApi';
 
 // Асинхронное действие для получения списка клиентов
-export const fetchClientsData = createAsyncThunk('clients/fetch', async () => {
-  const clients = await fetchClients();
+export const fetchClientsData = createAsyncThunk('clients/fetch', async (_, { getState }) => {
+  const clients = await fetchClients(getState);
   return clients;
 });
 
 // Асинхронное действие для добавления нового клиента
-export const addClientData = createAsyncThunk('clients/add', async (newClient) => {
-  const addedClient = await addClient(newClient);
+export const addClientData = createAsyncThunk('clients/add', async (newClient, { getState }) => {
+  const addedClient = await addClient(newClient, getState);
   return addedClient;
 });
 
 
 // Асинхронное действие для обновления клиента
-export const updateClientData = createAsyncThunk('clients/update', async (updatedClient) => {
-  await updateClient(updatedClient);
+export const updateClientData = createAsyncThunk('clients/update', async (updatedClient, { getState }) => {
+  await updateClient(updatedClient, getState);
   return updatedClient;
 });
 
 // Асинхронное действие для удаления клиента
-export const deleteClientData = createAsyncThunk('clients/delete', async (clientId) => {
-  console.log(clientId);
-  
-  await deleteClient(clientId);
+export const deleteClientData = createAsyncThunk('clients/delete', async (clientId, { getState }) => {
+  console.log(clientId, getState().auth.token);
+
+  await deleteClient(clientId, getState);
   return clientId;
 });
 
