@@ -1,8 +1,12 @@
-import axios from 'axios';
-import config from '../../config';
+import { apiRequest } from '../apiRequest';
+/* import axios from 'axios';
+import config from '../../config'; */
 
 // Функция для получения списка договоров
-export const fetchContracts = async () => {
+export const fetchContracts = (getState) => apiRequest('GET', '/contracts', null, getState);
+
+
+/* export const fetchContracts = async () => {
   try {
     const response = await axios.get(`${config.API_BASE_URL}/contracts`, {
       headers: {
@@ -16,10 +20,13 @@ export const fetchContracts = async () => {
   } catch (error) {
     throw error;
   }
-};
+}; */
 
 // Функция для добавления нового договора
-export const addContract = async (newContract) => {
+export const addContract = (newContract, getState) => apiRequest('post', '/contracts', newContract, getState);
+
+
+/* export const addContract = async (newContract) => {
   try {
     const response = await axios.post(`${config.API_BASE_URL}/contracts`, newContract, {
       headers: {
@@ -34,10 +41,13 @@ export const addContract = async (newContract) => {
   } catch (error) {
     throw error;
   }
-};
+}; */
 
 // Функция для удаления договора
-export const deleteContract = async (contractId) => {
+export const deleteContract = (contractId, getState) => apiRequest('delete', `/contracts/${contractId}`, null, getState, false);
+
+
+/* export const deleteContract = async (contractId) => {
   try {
     const response = await axios.delete(`${config.API_BASE_URL}/contracts/${contractId}`, {
       headers: {
@@ -50,9 +60,9 @@ export const deleteContract = async (contractId) => {
   } catch (error) {
     throw error;
   }
-};
+}; */
 
-// Функция для получения информации о клиенте по _id
+/* // Функция для получения информации о клиенте по _id
 export const getClientById = async (clientId) => {
   try {
     const response = await axios.get(`${config.API_BASE_URL}/clients/${clientId}`, {
@@ -86,4 +96,4 @@ export const getDeveloperById = async (developerId) => {
     console.error(`Ошибка при получении разработчика с ID ${developerId}:`, error.message);
     return null;
   }
-};
+}; */

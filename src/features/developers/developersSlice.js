@@ -2,20 +2,20 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchDevelopers, addDeveloper, deleteDeveloper } from './developersApi';
 
 // Асинхронное действие для получения списка разработчиков
-export const fetchDevelopersData = createAsyncThunk('developers/fetch', async () => {
-  const developers = await fetchDevelopers();
+export const fetchDevelopersData = createAsyncThunk('developers/fetch', async (_, { getState }) => {
+  const developers = await fetchDevelopers(getState);
   return developers;
 });
 
 // Асинхронное действие для добавления нового разработчика
-export const addDeveloperData = createAsyncThunk('developers/add', async (newDeveloper) => {
-  const addedDeveloper = await addDeveloper(newDeveloper);
+export const addDeveloperData = createAsyncThunk('developers/add', async (newDeveloper, { getState }) => {
+  const addedDeveloper = await addDeveloper(newDeveloper, getState);
   return addedDeveloper;
 });
 
 // Асинхронное действие для удаления разработчика
-export const deleteDeveloperData = createAsyncThunk('developers/delete', async (developerId) => {
-  await deleteDeveloper(developerId);
+export const deleteDeveloperData = createAsyncThunk('developers/delete', async (developerId, { getState }) => {
+  await deleteDeveloper(developerId, getState);
   return developerId;
 });
 

@@ -1,8 +1,12 @@
 import axios from 'axios';
 import config from '../../config';
+import { apiRequest } from '../apiRequest';
+
 
 // Функция для получения списка разработчиков
-export const fetchDevelopers = async () => {
+export const fetchDevelopers = (getState) => apiRequest('GET', '/developers', null, getState);
+
+/* export const fetchDevelopers = async () => {
   try {
     const response = await axios.get(`${config.API_BASE_URL}/developers`, {
       headers: {
@@ -17,9 +21,12 @@ export const fetchDevelopers = async () => {
     throw error;
   }
 };
+ */
 
 // Функция для добавления нового разработчика
-export const addDeveloper = async (newDeveloper) => {
+export const addDeveloper = (newDeveloper, getState) => apiRequest('POST', '/developers', newDeveloper, getState);
+
+/* export const addDeveloper = async (newDeveloper) => {
   try {
     const response = await axios.post(`${config.API_BASE_URL}/developers`, newDeveloper, {
       headers: {
@@ -35,9 +42,11 @@ export const addDeveloper = async (newDeveloper) => {
     throw error;
   }
 };
-
+ */
 // Функция для удаления разработчика
-export const deleteDeveloper = async (developerId) => {
+export const deleteDeveloper = (developerId, getState) => apiRequest('delete', `/developers/${developerId}`, null, getState, false);
+
+/* export const deleteDeveloper = async (developerId) => {
   try {
     const response = await axios.delete(`${config.API_BASE_URL}/developers/${developerId}`, {
       headers: {
@@ -50,4 +59,4 @@ export const deleteDeveloper = async (developerId) => {
   } catch (error) {
     throw error;
   }
-};
+}; */

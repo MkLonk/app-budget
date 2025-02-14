@@ -1,11 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchContracts, addContract, /* getClientById, getDeveloperById, */ deleteContract } from './contractsApi';
-//import { fetchClients } from '../clients';
-//import { fetchDevelopers } from '../developers';
 
 // Асинхронное действие для получения списка договоров
 export const fetchContractsData = createAsyncThunk('contracts/fetch', async (_, { getState }) => {
-  const contracts = await fetchContracts();
+  const contracts = await fetchContracts(getState);
   const clients = getState().clients.list;
   const developers = getState().developers.list;
 
@@ -18,36 +16,15 @@ export const fetchContractsData = createAsyncThunk('contracts/fetch', async (_, 
   return enrichedContracts;
 });
 
-/* export const fetchContractsData = createAsyncThunk('contracts/fetch', async () => {
-  const contracts = await fetchContracts();
-
-  // Преобразуем данные: заменяем _id на названия компаний
-  const enrichedContracts = await Promise.all(
-    contracts.map(async (contract) => {
-      const clientName = await getClientById(contract.client);
-      const developerName = await getDeveloperById(contract.developer);
-      return {
-        ...contract,
-        client: clientName || 'Неизвестный клиент',
-        developer: developerName || 'Неизвестный разработчик',
-      };
-    })
-  );
-
-  return enrichedContracts;
-}); */
-
-
 // Асинхронное действие для добавления нового договора
-export const addContractData = createAsyncThunk('contracts/add', async (newContract) => {
-  const addedContract = await addContract(newContract);
+export const addContractData = createAsyncThunk('contracts/add', async (newContract, { getState }) => {
+  const addedContract = await addContract(newContract, getState);
   return addedContract;
 });
 
-
 // Асинхронное действие для удаления договора
-export const deleteContractData = createAsyncThunk('contracts/delete', async (contractId) => {
-  await deleteContract(contractId);
+export const deleteContractData = createAsyncThunk('contracts/delete', async (contractId, { getState }) => {
+  await deleteContract(contractId, getState);
   return contractId;
 });
 

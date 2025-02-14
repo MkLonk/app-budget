@@ -51,6 +51,7 @@ const authSlice = createSlice({
       .addCase(loginUserAsync.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.token = action.payload.token;
+        state.user = action.payload.email
         state.isAuthenticated = true; // Устанавливаем флаг
         localStorage.setItem('token', action.payload.token);
         localStorage.setItem('email', action.payload.email);

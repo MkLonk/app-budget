@@ -20,10 +20,12 @@ const Header = () => {
       {/* Левая часть: навигация */}
       <nav className="header__nav">
 
+        <Link to="/" className="header__logo" />
+
         {/* Ссылка на главную страницу */}
-        <Link to="/" className={`header__link ${location.pathname === '/' ? 'header__link--active' : ''}`}>
+        {/* <Link to="/" className={`header__link ${location.pathname === '/' ? 'header__link--active' : ''}`}>
           Главная
-        </Link>
+        </Link> */}
         {isAuthenticated && (
           <div className="header__nav">
             {/* Кнопка "Клиенты" */}

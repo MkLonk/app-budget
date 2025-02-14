@@ -13,6 +13,20 @@
   gap: 20px;
 }
 
+.header__logo {
+  text-decoration: none;
+  /* margin-right: 10px; */ /* Отступ между логотипом и кнопкой "Главная" */
+  background-image: url(../../assets/logo2.png);
+  width: 100px; /* Размер логотипа */
+  height: 37px; /* Размер логотипа */
+  transition: transform 0.3s ease; /* Анимация при наведении */
+}
+
+.header__logo:hover {
+  transform: scale(1.1); /* Увеличение изображения при наведении */
+}
+
+
 .header__nav-left {
   display: flex;
   gap: 20px;

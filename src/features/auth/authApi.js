@@ -1,7 +1,6 @@
 // src/features/auth/authApi.js
 import axios from 'axios';
 import config from '../../config';
-/* import { apiRequest } from '../apiRequest'; */
 
 // export const addClient = (newClient) => apiRequest('post', '/clients', newClient);
 
