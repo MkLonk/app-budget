@@ -1,0 +1,172 @@
+/* src/components/companies/companies.css */
+.companies {
+  padding: 20px;
+}
+
+.companies__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.companies__add-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.companies__add-button:hover {
+  background-color: #0056b3;
+}
+
+.companies__list {
+  margin-top: 20px;
+}
+
+/* Блок: popup */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Элемент: popup__form */
+.popup__form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Элемент: popup__title */
+.popup__title {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Элемент: popup__label */
+.popup__label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.popup__input-group {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  margin: 10px 0 50px ;
+}
+
+/* Элемент: popup__input */
+.popup__input {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Элемент: popup__buttons */
+.popup__buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* Элемент: popup__submit */
+.popup__submit {
+  height: 34px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.popup__submit:hover {
+  background-color: #0056b3;
+}
+
+/* Элемент: popup__cancel */
+.popup__cancel {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.popup__cancel:hover {
+  background-color: #bd2130;
+}
+
+/* Элемент: popup__message */
+.popup__message {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.popup__message--success {
+  color: green;
+}
+
+.popup__message--error {
+  color: red;
+}
+
+/* Элемент: popup__company-list */
+.popup__company-list {
+  margin-top: 10px;
+}
+
+.popup__company-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.popup__company-name {
+  font-size: 14px;
+  color: #333;
+}
+
+.popup__company-action {
+  padding: 5px 10px;
+  font-size: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.popup__company-action:hover {
+  background-color: #0056b3;
+}

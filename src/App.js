@@ -5,6 +5,8 @@ import store from './store';
 import Header from './components/header/Header';
 import Home from './components/home/Home'
 import ClientsList from './components/clients/ClientsList';
+import Companies from './components/companies/Companies'
+// import CreateCompanyForm from './components/companies/CreateCompanyForm';
 import DevelopersList from './components/developers/DevelopersList';
 import ContractsList from './components/contracts/ContractsList';
 import Register from './components/auth/Register';
@@ -23,6 +25,11 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+
+          <Route path="/companies" element={
+            <PrivateRoute>
+              <Companies />
+            </PrivateRoute>} />
 
           <Route path="/clients" element={
             <PrivateRoute>

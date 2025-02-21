@@ -28,6 +28,12 @@ const Header = () => {
         </Link> */}
         {isAuthenticated && (
           <div className="header__nav">
+
+            < Link to="/companies" className={`header__link ${location.pathname === '/companies' ? 'header__link--active' : ''}`}>
+              Компании
+            </Link>
+
+
             {/* Кнопка "Клиенты" */}
             < Link to="/clients" className={`header__link ${location.pathname === '/clients' ? 'header__link--active' : ''}`}>
               Клиенты
